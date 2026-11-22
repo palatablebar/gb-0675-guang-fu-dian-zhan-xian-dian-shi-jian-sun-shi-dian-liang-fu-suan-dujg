@@ -13,6 +13,7 @@
 | M5 损失核算 | 执行并复核损失核算 | `POST /api/loss` | `app/modules/loss/rules.py` | `tests/test_loss.py` |
 | M6 能量对账 | 执行并复核能量对账 | `POST /api/reconcile` | `app/modules/reconcile/rules.py` | `tests/test_reconcile.py` |
 | M7 运行归档 | 执行并复核运行归档 | `POST /api/archive` | `app/modules/archive/rules.py` | `tests/test_archive.py` |
+| M8 申报裁定 | 执行并复核申报裁定 | `POST /api/declare` | `app/modules/declare/rules.py` | `tests/test_declare.py` |
 
 ## 陷阱登记
 
@@ -29,6 +30,10 @@
 | TRAP-06 | 全角千分位 | 静默错算或证据丢失 | 以可复核规则显式处理 | `app/modules/devices/rules.py` | `tests/test_devices.py::test_fullwidth_number` |
 | TRAP-11 | UTC归一 | 静默错算或证据丢失 | 以可复核规则显式处理 | `app/modules/devices/rules.py` | `tests/test_devices.py::test_time_equivalence` |
 | TRAP-23 | 限电区间并集 | 静默错算或证据丢失 | 以可复核规则显式处理 | `app/modules/slicing/rules.py` | `tests/test_slicing.py::test_overlapping_real` |
+| TRAP-24 | 回执未齐抢报全部损失 | 把主动降功率混入补偿 | 仅指令可证明部分计入申报，其余主动或待查，裁定暂定申报 | `app/modules/declare/rules.py` | `tests/test_declare.py::test_provisional_when_receipt_pending` |
+| TRAP-25 | 跨设备指令张冠李戴 | 用他机指令证明本机责任 | 指令按事件与设备双重覆盖判定 | `app/modules/declare/rules.py` | `tests/test_declare.py::test_cross_device_order_not_covering` |
+| TRAP-26 | 依据更新中途失败 | 新版半成品覆盖旧版 | 整体校验加单事务提交，失败回滚保持旧版 | `app/store.py` | `tests/test_declare.py::test_basis_update_failure_restores_old_version` |
+| TRAP-27 | 同一依据重复提交 | 重复申报或凭据被覆盖 | 依据摘要幂等，不新增不丢失，历史版本全留 | `app/store.py` | `tests/test_declare.py::test_same_basis_retry_no_new_declaration` |
 
 ## 对账规则
 

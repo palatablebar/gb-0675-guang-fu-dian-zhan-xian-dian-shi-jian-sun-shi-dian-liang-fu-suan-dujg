@@ -10,7 +10,8 @@
     "基线拟合",
     "损失核算",
     "能量对账",
-    "运行归档"
+    "运行归档",
+    "申报裁定"
   ],
   "rule": "仅用有效对照逆变器和相同辐照区间拟合基线；重叠限电事件先求并集再积分",
   "lane": "L10",
@@ -29,7 +30,8 @@
     "baseline",
     "loss",
     "reconcile",
-    "archive"
+    "archive",
+    "declare"
   ],
   "labels": {
     "id": "证据号",
@@ -67,6 +69,19 @@
     "unknown_seconds": "未定 s",
     "line": "原始行",
     "_line": "原始行",
-    "detail": "原因"
+    "detail": "原因",
+    "event_id": "限电事件",
+    "cap_kw": "指令上限 kW",
+    "receipt": "回执",
+    "price_per_kwh": "电价 元/kWh",
+    "order_ids": "指令依据",
+    "declared_kwh": "申报损失 kWh",
+    "voluntary_kwh": "主动降功率 kWh",
+    "pending_kwh": "待查 kWh",
+    "bucket": "归集",
+    "causes": "判定",
+    "known_loss_kwh": "已知损失 kWh",
+    "reference_amount": "参考金额 元",
+    "decision": "裁定"
   }
 }
